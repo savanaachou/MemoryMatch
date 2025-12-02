@@ -20,7 +20,7 @@ public class Card : MonoBehaviour
         {
             isFlipped = true;
             cardImage.sprite = gameManager.cardFaces[cardID];
-            gameManager.cardFlipped(this);
+            gameManager.CardFlipped(this);
         }
     }
     
