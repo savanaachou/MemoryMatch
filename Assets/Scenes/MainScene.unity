@@ -1001,24 +1001,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35d203ad64e6084ab09e13fe23d752c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManagerCard
-  cardPrefab: {fileID: 8858837802416581261, guid: 916dcd1e68ece9342bda5c4f7d728acd, type: 3}
-  cardBack: {fileID: 21300000, guid: 4075e07036c2144478bd46df9e415323, type: 3}
-  cardFaces:
-  - {fileID: 21300000, guid: d0ceefc0f740ba441aa153b5c11677f3, type: 3}
-  - {fileID: 21300000, guid: 0640b31326c4c764a80b7ca230c8bf1b, type: 3}
-  - {fileID: 21300000, guid: 791403a4793ed2d4793dee03b313282a, type: 3}
-  - {fileID: 21300000, guid: 127629f5824a89d479797ef8718a6a9f, type: 3}
-  - {fileID: 21300000, guid: f7b62b8758b78224a9804f70f964fe7a, type: 3}
-  - {fileID: 21300000, guid: 2e56fb6fbcc9ec34882f6f8b03be00bd, type: 3}
-  firstCard: {fileID: 0}
-  secondCard: {fileID: 0}
-  cardHolder: {fileID: 1385595151}
-  timerText: {fileID: 225675495}
-  startPanel: {fileID: 1837689837}
-  gamePanel: {fileID: 554440771}
-  endPanel: {fileID: 25604797}
-  resultText: {fileID: 1823254618}
-  maxTime: 60
+  cardManager: {fileID: 1800596111}
+  timerController: {fileID: 1000360911}
+  uiManager: {fileID: 1056261040}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,6 +1048,100 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1000360910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1000360912}
+  - component: {fileID: 1000360911}
+  m_Layer: 0
+  m_Name: TimeController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1000360911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000360910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6472b9ef3d455324c97b80bf2b7e65ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimerController
+  maxTime: 60
+  timerText: {fileID: 225675495}
+--- !u!4 &1000360912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000360910}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1056261039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1056261041}
+  - component: {fileID: 1056261040}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1056261040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056261039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a60dcc2b0b222f46bc05394b59b23bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  startPanel: {fileID: 1837689837}
+  gamePanel: {fileID: 554440771}
+  endPanel: {fileID: 25604797}
+  resultText: {fileID: 1823254618}
+--- !u!4 &1056261041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056261039}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1609,6 +1688,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619771143}
   m_CullTransparentMesh: 1
+--- !u!1 &1800596110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1800596112}
+  - component: {fileID: 1800596111}
+  m_Layer: 0
+  m_Name: CardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1800596111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800596110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2f955dc2b12fb4f81bbf9e1bc32ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardManager
+  cardPrefab: {fileID: 8858837802416581261, guid: 916dcd1e68ece9342bda5c4f7d728acd, type: 3}
+  cardFaces:
+  - {fileID: 21300000, guid: d0ceefc0f740ba441aa153b5c11677f3, type: 3}
+  - {fileID: 21300000, guid: 0640b31326c4c764a80b7ca230c8bf1b, type: 3}
+  - {fileID: 21300000, guid: 791403a4793ed2d4793dee03b313282a, type: 3}
+  - {fileID: 21300000, guid: 127629f5824a89d479797ef8718a6a9f, type: 3}
+  - {fileID: 21300000, guid: f7b62b8758b78224a9804f70f964fe7a, type: 3}
+  - {fileID: 21300000, guid: 2e56fb6fbcc9ec34882f6f8b03be00bd, type: 3}
+  cardBack: {fileID: 21300000, guid: 4075e07036c2144478bd46df9e415323, type: 3}
+  cardHolder: {fileID: 1385595151}
+--- !u!4 &1800596112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800596110}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1823254616
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,5 +2233,8 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 189746083}
   - {fileID: 1265470867}
-  - {fileID: 705840763}
   - {fileID: 454537296}
+  - {fileID: 705840763}
+  - {fileID: 1800596112}
+  - {fileID: 1056261041}
+  - {fileID: 1000360912}

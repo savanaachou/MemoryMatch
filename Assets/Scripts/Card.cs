@@ -3,30 +3,56 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    public int cardID;
-    public GameManagerCard gameManager;
-    private bool isFlipped;
+    [Header("Card Visuals")]
     public Image cardImage;
-    
-    void Start()
+
+    [HideInInspector] public int cardID;
+    private Sprite faceSprite;
+    private Sprite backSprite;
+
+    private bool isFlipped = false;
+    // private bool isMatched = false;
+
+    private CardManager cardManager;
+
+    // Called by CardManager immediately after instantiation
+    public void Init(CardManager manager, int id, Sprite face, Sprite back)
     {
-        isFlipped = false;
-        cardImage.sprite = GameManagerCard.Instance.cardBack;
+        cardManager = manager;
+        cardID = id;
+        faceSprite = face;
+        backSprite = back;
+
+        HideCard();
     }
 
-    public void FlipCard()
+    public void OnCardClicked()
     {
-        if (!isFlipped && (gameManager.firstCard == null || gameManager.secondCard == null))
-        {
-            isFlipped = true;
-            cardImage.sprite = gameManager.cardFaces[cardID];
-            gameManager.CardFlipped(this);
-        }
+        if (isFlipped || cardManager.IsSelectionLocked()) 
+            return;
+
+        isFlipped = true;
+        cardImage.sprite = faceSprite;
+
+        cardManager.CardFlipped(this);
     }
-    
+
+    public void ShowCard()
+    {
+        isFlipped = true;
+        cardImage.sprite = faceSprite;
+    }
+
     public void HideCard()
     {
         isFlipped = false;
-        cardImage.sprite = gameManager.cardBack;
+        cardImage.sprite = backSprite;
     }
+
+    /*
+    public void SetMatched()
+    {
+        isMatched = true;
+    }
+    */
 }

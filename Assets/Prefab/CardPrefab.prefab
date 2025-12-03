@@ -123,7 +123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8858837802416581261}
         m_TargetAssemblyTypeName: Card, Assembly-CSharp
-        m_MethodName: FlipCard
+        m_MethodName: OnCardClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -145,6 +145,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158a622d2d2020948a94365d37d5206e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Card
-  cardID: 0
-  gameManager: {fileID: 0}
   cardImage: {fileID: 7742453239399363909}
+  cardID: 0

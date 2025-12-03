@@ -11,21 +11,21 @@ public class GameEventsListener : MonoBehaviour
     private IEnumerator WaitForManager()
     {
         // wait until GameManagerCard.Instance is available
-        while (GameManagerCard.Instance == null)
+        while (GameManager.Instance == null)
             yield return null;
 
-        GameManagerCard.Instance.OnGameStarted += HandleGameStarted;
-        GameManagerCard.Instance.OnGameOver += HandleGameOver;
-        GameManagerCard.Instance.OnGameWin += HandleGameWin;
+        GameManager.Instance.OnGameStarted += HandleGameStarted;
+        GameManager.Instance.OnGameOver += HandleGameOver;
+        GameManager.Instance.OnGameWin += HandleGameWin;
     }
 
     private void OnDisable()
     {
-        if (GameManagerCard.Instance == null) return;
+        if (GameManager.Instance == null) return;
 
-        GameManagerCard.Instance.OnGameStarted -= HandleGameStarted;
-        GameManagerCard.Instance.OnGameOver -= HandleGameOver;
-        GameManagerCard.Instance.OnGameWin -= HandleGameWin;
+        GameManager.Instance.OnGameStarted -= HandleGameStarted;
+        GameManager.Instance.OnGameOver -= HandleGameOver;
+        GameManager.Instance.OnGameWin -= HandleGameWin;
     }
 
 
