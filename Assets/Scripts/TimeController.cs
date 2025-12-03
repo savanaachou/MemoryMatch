@@ -47,4 +47,10 @@ public class TimerController : MonoBehaviour
     {
         timerText.text = "Time Left: " + Mathf.Round(timer) + "s";
     }
+    
+    public float GetElapsedTime()
+    {
+        return maxTime - timer;
+    }
+
 }

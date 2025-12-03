@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public GameObject endPanel;
 
     public TextMeshProUGUI resultText;
+    public TextMeshProUGUI timeTakenText;
 
     // Show methods
     public void ShowStartPanel()
@@ -24,12 +25,21 @@ public class UIManager : MonoBehaviour
         endPanel.SetActive(false);
     }
 
-    public void ShowEndPanel(string message)
+    public void ShowEndPanel(string message, float? timeTaken = null)
     {
         startPanel.SetActive(false);
         gamePanel.SetActive(false);
         endPanel.SetActive(true);
+        
         resultText.text = message;
+
+        if (timeTaken.HasValue)
+        {
+            timeTakenText.text = "Time Taken: " + Mathf.Round(timeTaken.Value) + "s";
+            timeTakenText.gameObject.SetActive(true);
+        }
+        else
+            timeTakenText.gameObject.SetActive(false);
     }
 
     public void HideStartPanel()

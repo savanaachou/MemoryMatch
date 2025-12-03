@@ -7,11 +7,9 @@
     <list default="true" id="a4238566-2e1a-435c-a337-4b7d191ac579" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Memory Match/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Memory Match/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Card.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Card.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CardManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CardManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Commands/ICommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Commands/ICommand.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/IGameState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/IGameState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/EndState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/EndState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TimeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TimeController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UIManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +35,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/MainScene.unity" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/sachou/Desktop/Memory Match/Assets/Scripts/Card.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Card.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/sachou/Desktop/Memory Match/Assets/Scripts/Card.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CardManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -137,7 +136,7 @@
       <workItem from="1764712079307" duration="9582000" />
       <workItem from="1764733598715" duration="93000" />
       <workItem from="1764733735295" duration="8000" />
-      <workItem from="1764734792501" duration="8950000" />
+      <workItem from="1764734792501" duration="12059000" />
     </task>
     <task id="LOCAL-00001" summary="Initial push">
       <option name="closed" value="true" />
@@ -195,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764741317339</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added state and command pattern, added fonts">
+      <option name="closed" value="true" />
+      <created>1764748501291</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1764748501291</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,7 +236,8 @@
     <MESSAGE value="implemented card game" />
     <MESSAGE value="implemented observer pattern" />
     <MESSAGE value="refactored code" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored code" />
+    <MESSAGE value="added state and command pattern, added fonts" />
+    <option name="LAST_COMMIT_MESSAGE" value="added state and command pattern, added fonts" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
