@@ -16,7 +16,7 @@ public class Card : MonoBehaviour
 
     public void FlipCard()
     {
-        if (!isFlipped && gameManager.firstCard == null || gameManager.secondCard == null)
+        if (!isFlipped && (gameManager.firstCard == null || gameManager.secondCard == null))
         {
             isFlipped = true;
             cardImage.sprite = gameManager.cardFaces[cardID];
