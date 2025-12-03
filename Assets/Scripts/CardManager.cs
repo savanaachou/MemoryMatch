@@ -19,6 +19,13 @@ public class CardManager : MonoBehaviour
 
     private int pairsMatched = 0;
     private int totalPairs = 0;
+    
+    public CommandInvoker commandInvoker { get; private set; }
+    
+    private void Awake()
+    {
+        commandInvoker = new CommandInvoker();
+    }
 
     public void SetupCards()
     {
@@ -81,6 +88,9 @@ public class CardManager : MonoBehaviour
     {
         if (firstCard.cardID == secondCard.cardID)
         {
+            ICommand matchCommand = new MatchCardCommand(firstCard, secondCard);
+            commandInvoker.ExecuteCommand(matchCommand);
+            
             pairsMatched++;
 
             firstCard = null;
@@ -101,8 +111,12 @@ public class CardManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        firstCard.HideCard();
-        secondCard.HideCard();
+        // Execute HideCardCommand for each card
+        ICommand hideFirst = new HideCardCommand(firstCard);
+        ICommand hideSecond = new HideCardCommand(secondCard);
+
+        commandInvoker.ExecuteCommand(hideFirst);
+        commandInvoker.ExecuteCommand(hideSecond);
 
         firstCard = null;
         secondCard = null;

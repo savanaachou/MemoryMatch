@@ -4,6 +4,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    private IGameState currentState;
 
     // Managers
     public CardManager cardManager;
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     public event System.Action OnGameOver;
     public event System.Action OnGameWin;
 
-    private bool gameStarted = false;
+    // private bool gameStarted = false;
 
     private void Awake()
     {
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        uiManager.ShowStartPanel();
+        SetState(new StartState(this)); // show start panel initially
 
         // Subscribe to external manager events
         timerController.OnTimerEnd += HandleGameOver;
@@ -38,48 +39,40 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        gameStarted = true;
-
-        uiManager.ShowGamePanel();
-        timerController.StartTimer();
-        cardManager.SetupCards();
-
+        SetState(new GameState(this));
         OnGameStarted?.Invoke();
     }
 
     public void RestartGame()
     {
-        gameStarted = false;
+        SetState(new StartState(this));
+    }
 
-        timerController.ResetTimer();
-        cardManager.ClearCards();
-        uiManager.ShowStartPanel();
+    private void HandleGameWin()
+    {
+        SetState(new EndState(this, "You Win!"));
+        OnGameWin?.Invoke();
+    }
+
+    private void HandleGameOver()
+    {
+        SetState(new EndState(this, "Time's up! Try Again!"));
+        OnGameOver?.Invoke();
+    }
+    
+    public void SetState(IGameState newState)
+    {
+        currentState?.Exit();
+        currentState = newState;
+        currentState.Enter();
     }
 
     public void QuitGame()
     {
         #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
         #else
-                Application.Quit();
+            Application.Quit();
         #endif
-    }
-
-    private void HandleGameOver()
-    {
-        if (!gameStarted) return;
-
-        gameStarted = false;
-        uiManager.ShowEndPanel("Time's up! Try Again!");
-        OnGameOver?.Invoke();
-    }
-
-    private void HandleGameWin()
-    {
-        if (!gameStarted) return;
-
-        gameStarted = false;
-        uiManager.ShowEndPanel("You Win!");
-        OnGameWin?.Invoke();
     }
 }

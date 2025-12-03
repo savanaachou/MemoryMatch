@@ -11,7 +11,8 @@ public class Card : MonoBehaviour
     private Sprite backSprite;
 
     private bool isFlipped = false;
-    // private bool isMatched = false;
+    private bool isMatched = false;
+
 
     private CardManager cardManager;
 
@@ -28,13 +29,11 @@ public class Card : MonoBehaviour
 
     public void OnCardClicked()
     {
-        if (isFlipped || cardManager.IsSelectionLocked()) 
+        if (isFlipped || cardManager.IsSelectionLocked())
             return;
 
-        isFlipped = true;
-        cardImage.sprite = faceSprite;
-
-        cardManager.CardFlipped(this);
+        ICommand command = new FlipCardCommand(this);
+        cardManager.commandInvoker.ExecuteCommand(command);
     }
 
     public void ShowCard()
@@ -48,11 +47,33 @@ public class Card : MonoBehaviour
         isFlipped = false;
         cardImage.sprite = backSprite;
     }
+    
+    public void Flip()
+    {
+        isFlipped = true;
+        cardImage.sprite = faceSprite;
+        cardManager.CardFlipped(this);
+    }
 
-    /*
+    public void HideDirect()
+    {
+        isFlipped = false;
+        cardImage.sprite = backSprite;
+    }
+
     public void SetMatched()
     {
         isMatched = true;
     }
-    */
+
+    public void UnsetMatched()
+    {
+        isMatched = false;
+    }
+
+    public bool IsMatched()
+    {
+        return isMatched;
+    }
+
 }

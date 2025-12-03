@@ -1,6 +1,6 @@
 public interface IGameState
 {
-    void EnterState();       // Called when this state becomes active
-    void ExitState();        // Called when leaving this state
-    void UpdateState();      // Optional, for per-frame logic
+    void Enter();   // Called when entering this state
+    void Exit();    // Called when leaving this state
+    void Update();  // Optional: called every frame if needed
 }
