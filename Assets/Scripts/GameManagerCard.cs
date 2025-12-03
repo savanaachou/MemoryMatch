@@ -33,6 +33,11 @@ public class GameManagerCard : MonoBehaviour
     private bool gameStarted = false;
 
     public float maxTime = 60f;
+    
+    // Observer Pattern Events
+    public event System.Action OnGameStarted;
+    public event System.Action OnGameOver;
+    public event System.Action OnGameWin;
 
     private void Awake()
     {
@@ -163,12 +168,14 @@ public class GameManagerCard : MonoBehaviour
     void GameOver()
     {
         isGameOver = true;
+        OnGameOver?.Invoke();   // notify observers
         FinalPanel();
     }
 
     void LevelFinished()
     {
         isLevelFinished = true;
+        OnGameWin?.Invoke();    // notify observers
         FinalPanel();
     }
     
@@ -179,8 +186,9 @@ public class GameManagerCard : MonoBehaviour
         endPanel.SetActive(false);
 
         gameStarted = true;
-
         InitializeGame();
+
+        OnGameStarted?.Invoke();   // notify observers
     }
     
     public void QuitGame()
@@ -230,4 +238,5 @@ public class GameManagerCard : MonoBehaviour
     {
         timerText.text = "Time Left: " + Mathf.Round(timer) + "s";
     }
+
 }
