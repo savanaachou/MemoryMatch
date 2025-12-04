@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GridSize
+{
+    ThreeByTwo,  // 3 columns, 2 rows (6 cards)
+    FourByThree  // 4 columns, 3 rows (12 cards)
+}
+
 public class CardManager : MonoBehaviour
 {
     public Card cardPrefab;
@@ -22,6 +28,9 @@ public class CardManager : MonoBehaviour
     
     public CommandInvoker commandInvoker { get; private set; }
     
+    public GridSize selectedGridSize = GridSize.FourByThree;  
+    public UnityEngine.UI.GridLayoutGroup gridLayout;
+    
     private void Awake()
     {
         commandInvoker = new CommandInvoker();
@@ -31,13 +40,20 @@ public class CardManager : MonoBehaviour
     {
         ClearCards();
 
+        int cardCount = selectedGridSize switch
+        {
+            GridSize.ThreeByTwo => 6,   // 3x2 grid
+            GridSize.FourByThree => 12, // 4x3 grid
+            _ => 12
+        };
+
+        totalPairs = cardCount / 2;
         pairsMatched = 0;
-        totalPairs = cardFaces.Length;
 
         shuffledIDs = new List<int>();
 
-        // create ID pairs
-        for (int i = 0; i < cardFaces.Length; i++)
+        // Only use the number of faces needed
+        for (int i = 0; i < totalPairs; i++)
         {
             shuffledIDs.Add(i);
             shuffledIDs.Add(i);
@@ -49,6 +65,9 @@ public class CardManager : MonoBehaviour
             int randomIndex = Random.Range(i, shuffledIDs.Count);
             (shuffledIDs[i], shuffledIDs[randomIndex]) = (shuffledIDs[randomIndex], shuffledIDs[i]);
         }
+
+        // update grid layout
+        ApplyGridLayout();
 
         // instantiate cards
         foreach (int id in shuffledIDs)
@@ -120,6 +139,22 @@ public class CardManager : MonoBehaviour
 
         firstCard = null;
         secondCard = null;
+    }
+    
+    private void ApplyGridLayout()
+    {
+        switch (selectedGridSize)
+        {
+            case GridSize.ThreeByTwo:
+                gridLayout.constraint = UnityEngine.UI.GridLayoutGroup.Constraint.FixedColumnCount;
+                gridLayout.constraintCount = 3;
+                break;
+
+            case GridSize.FourByThree:
+                gridLayout.constraint = UnityEngine.UI.GridLayoutGroup.Constraint.FixedColumnCount;
+                gridLayout.constraintCount = 4;
+                break;
+        }
     }
     
     public bool IsSelectionLocked()
