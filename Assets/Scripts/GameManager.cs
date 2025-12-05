@@ -50,18 +50,15 @@ public class GameManager : MonoBehaviour
 
     private void HandleGameWin()
     {
-        float elapsed = timerController.GetElapsedTime();
-        SetState(new EndState(this, "You Win!", elapsed));
+        SetState(new EndState(this, "You Win!"));
         OnGameWin?.Invoke();
     }
 
     private void HandleGameOver()
     {
-        float elapsed = timerController.GetElapsedTime();
-        SetState(new EndState(this, "Time’s up. Try Again!", elapsed));
+        SetState(new EndState(this, "Time’s up. Try Again!"));
         OnGameOver?.Invoke();
     }
-
     
     public void SetState(IGameState newState)
     {

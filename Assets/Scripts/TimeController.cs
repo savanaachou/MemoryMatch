@@ -10,10 +10,15 @@ public class TimerController : MonoBehaviour
 
     private float timer;
     private bool running = false;
+    
+    private float elapsedTime = 0f;
+    public float ElapsedTime => elapsedTime;
 
     private void Update()
     {
         if (!running) return;
+
+        elapsedTime += Time.deltaTime;
 
         if (timer > 0)
         {
@@ -32,6 +37,7 @@ public class TimerController : MonoBehaviour
     public void StartTimer()
     {
         timer = maxTime;
+        elapsedTime = 0f;
         running = true;
         UpdateTimerText();
     }
@@ -51,6 +57,11 @@ public class TimerController : MonoBehaviour
     public float GetElapsedTime()
     {
         return maxTime - timer;
+    }
+
+    public float GetTimeTaken()
+    {
+        return elapsedTime;
     }
 
 }

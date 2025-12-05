@@ -12,77 +12,58 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI resultText;
     public TextMeshProUGUI timeTakenText;
 
-    // Show methods
+    // --- SHOW METHODS ---
+
     public void ShowStartPanel()
     {
-        startPanel.SetActive(true);
-        scorePanel.SetActive(false);
-        selectPanel.SetActive(false);
-        gamePanel.SetActive(false);
-        endPanel.SetActive(false);
+        ActivateOnly(startPanel);
     }
-    
-    public void ShowSorePanel()
+
+    public void ShowScorePanel()
     {
-        startPanel.SetActive(false);
-        scorePanel.SetActive(true);
-        selectPanel.SetActive(false);
-        gamePanel.SetActive(false);
-        endPanel.SetActive(false);
+        ActivateOnly(scorePanel);
+
+        // Refresh UI each time the panel opens
+        ScorePanelUI ui = scorePanel.GetComponent<ScorePanelUI>();
+        if (ui != null)
+            ui.LoadAndDisplayScores();
     }
-    
+
     public void ShowSelectPanel()
     {
-        startPanel.SetActive(false);
-        scorePanel.SetActive(false);
-        selectPanel.SetActive(true);
-        gamePanel.SetActive(false);
-        endPanel.SetActive(false);
+        ActivateOnly(selectPanel);
     }
 
     public void ShowGamePanel()
     {
-        startPanel.SetActive(false);
-        scorePanel.SetActive(false);
-        selectPanel.SetActive(false);
-        gamePanel.SetActive(true);
-        endPanel.SetActive(false);
+        ActivateOnly(gamePanel);
     }
 
     public void ShowEndPanel(string message, float? timeTaken = null)
     {
-        startPanel.SetActive(false);
-        scorePanel.SetActive(false);
-        selectPanel.SetActive(false);
-        gamePanel.SetActive(false);
-        endPanel.SetActive(true);
-        
+        ActivateOnly(endPanel);
+
         resultText.text = message;
 
         if (timeTaken.HasValue)
         {
-            timeTakenText.text = "Time Taken: " + Mathf.Round(timeTaken.Value) + "s";
+            timeTakenText.text = "Time Taken: " + timeTaken.Value.ToString("0.00") + "s";
             timeTakenText.gameObject.SetActive(true);
         }
         else
+        {
             timeTakenText.gameObject.SetActive(false);
+        }
     }
 
-    public void HideStartPanel()
-    {
-        startPanel.SetActive(false);
-    }
+    // --- HIDE METHODS ---
 
-    public void HideGamePanel()
-    {
-        gamePanel.SetActive(false);
-    }
+    public void HideStartPanel() => startPanel.SetActive(false);
+    public void HideGamePanel() => gamePanel.SetActive(false);
+    public void HideEndPanel() => endPanel.SetActive(false);
 
-    public void HideEndPanel()
-    {
-        endPanel.SetActive(false);
-    }
-    
+    // --- GRID SIZE BUTTONS ---
+
     public void SetGrid_3x2()
     {
         GameManager.Instance.cardManager.selectedGridSize = GridSize.ThreeByTwo;
@@ -93,4 +74,16 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.cardManager.selectedGridSize = GridSize.FourByThree;
     }
 
+    // --- HELPER: activates only this one panel ---
+
+    private void ActivateOnly(GameObject panel)
+    {
+        startPanel.SetActive(false);
+        scorePanel.SetActive(false);
+        selectPanel.SetActive(false);
+        gamePanel.SetActive(false);
+        endPanel.SetActive(false);
+
+        panel.SetActive(true);
+    }
 }
